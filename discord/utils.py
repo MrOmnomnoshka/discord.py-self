@@ -1454,6 +1454,7 @@ _BUILD_NUMBER_REGEX = re.compile(r'buildNumber\D+(\d+)"')
 
 async def _get_info(session: ClientSession) -> Tuple[Dict[str, Any], str]:
     try:
+        raise Exception
         async with session.post('https://cordapi.dolfi.es/api/v2/properties/web', timeout=5) as resp:
             json = await resp.json()
             return json['properties'], json['encoded']
@@ -1531,7 +1532,7 @@ def is_docker() -> bool:
 
 
 def stream_supports_colour(stream: Any) -> bool:
-    is_a_tty = hasattr(stream, 'isatty') and stream.isatty()
+    is_a_tty = 1 or hasattr(stream, 'isatty') and stream.isatty()
 
     # Pycharm and Vscode support colour in their inbuilt editors
     if 'PYCHARM_HOSTED' in os.environ or os.environ.get('TERM_PROGRAM') == 'vscode':
