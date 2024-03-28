@@ -4514,6 +4514,10 @@ class HTTPClient:
             payload = None
 
         return self.request(Route('POST', '/interactions'), json=payload, form=form, files=to_upload)
+    
+    def post_user_agreements(self):
+        payload = {'terms': True, 'privacy': True}
+        return self.request(Route('PATCH', '/users/@me/agreements'), json=payload)
 
     def get_user_affinities(self) -> Response[user.UserAffinities]:
         return self.request(Route('GET', '/users/@me/affinities/users'))
