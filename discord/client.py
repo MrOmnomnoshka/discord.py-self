@@ -5305,6 +5305,9 @@ class Client:
             Signing up for the waitlist failed.
         """
         await self._connection.http.hub_waitlist_signup(email, school)
+        
+    async def agree_user_agreements(self):
+        await self._connection.http.post_user_agreements()
 
     async def lookup_hubs(self, email: str, /) -> List[Guild]:
         """|coro|
